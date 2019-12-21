@@ -87,7 +87,6 @@
 </template>
 
 <script>
-import { validUsername } from '@/utils/validate'
 import SocialSign from './components/SocialSignin'
 
 export default {
@@ -95,15 +94,15 @@ export default {
   components: { SocialSign },
   data() {
     const validateUsername = (rule, value, callback) => {
-      if (!validUsername(value)) {
-        callback(new Error('请输入正确的用户名'))
+      if (!value || value.length === 0) {
+        callback(new Error('请输入用户名'))
       } else {
         callback()
       }
     }
     const validatePassword = (rule, value, callback) => {
-      if (value.length < 6) {
-        callback(new Error('密码不能少于6位'))
+      if (value.length < 4) {
+        callback(new Error('密码不能少于4位'))
       } else {
         callback()
       }
